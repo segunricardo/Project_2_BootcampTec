@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lets Play "Space Quiz"</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+</head>
+<style>
+    body{
+    background-image:url('img/space.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    }
+
+    #after_submit{
+    display: none;
+    background-color: rgb(0, 0, 0, 0.696);
+    height: 450px;
+    width: 100%;
+    }
+
+    #message {
+    color: #F309C8;
+    text-align: center;
+    text-shadow: 2px 2px 4px #000;
+    font-size: 40px;
+    }
+
+    #number_correct {
+    color:  #F309C8;
+    text-align: center;
+    text-shadow: 2px 2px 4px #000;
+    font-size: 34px;
+    }
+
+    #gifs {
+    width: 50%;
+    height: 270px;
+    position: relative; top: 4%; left: 25%;
+    }
+
+
+.trivia-board {
+    background-color: rgb(236, 235, 242, 50%);
+    width: 100%;
+    height: 500px;
+    margin-top: 1%;
+    box-shadow: 15px 15px 25px black;
+}
+
+.trivia-board li {
+    background-color: #FFF;
+    width: 44%;
+    height: 200px;
+    float: left;
+    margin: 2% 3%;
+    list-style-type: none;
+    box-shadow: 10px 10px 10px rgb(0,0,0, 0.356);
+}
+
+.trivia-acction {
+    transform: rotate(360deg);
+    transition: all 0.5s ease 0.5s;
+}
+
+.trivia-description {
+    margin-top: 2%;
+    text-align: justify;
+    color:white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.text {
+    color: 00000;
+}
+
+</style>
+<body>
+
+  <!--Nav Bar Start-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><img src="" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">Home</a>
+            <a class="nav-item nav-link active" href="map.html">Map <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="instructions.html">Game</a>
+            <a class="nav-item nav-link active"  href="join.html">Join</a>
+          </div>
+        </div>
+      </nav>
+      <!--Nav Bar Ends-->
+
+ <main>
+        <section class="container">
+            <div class="row">
+                <form class="col-12" id="quiz" name="quiz">
+                    <p  class="trivia-description">How many spacecraft have been launched in the short history of space exploration?</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 1º-->
+                                <img src="img/rocker_1.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input class="text" type="radio" value="one" name="question1">8,593
+                            </li>
+                                <li>
+                                <img src="img/rocket_2.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input class="text" type="radio" value="two" name="question1">150,000
+                            </li>
+                            <li>
+                                <img src="img/rocket_3.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input class="text" type="radio" value="three" name="question1">3,258
+                            </li>
+                            <li>
+                                <img src="img/rocket_4.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input class="text" type="radio" value="four" name="question1">7,493
+                            </li>
+                        </ul>
+                    <br>
+                    <p class="trivia-description">How many pieces of floating debris do you think are currently orbiting around planet earth?</p>
+                        <ul class="trivia-board">
+                            <li>    <!--Pregunta 2º-->
+                                <img src="img/garbaje.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question2">50 million
+                            </li>
+                            <li>
+                                <img src="img/garbaje.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question2">3.5 million
+                            </li>
+                            <li>
+                                <img src="img/garbaje.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question2">170 million
+                            </li>
+                                <li>
+                                <img src="img/garbaje.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question2">10 million
+                            </li>
+                        </ul>
+                    <br>
+                    <p class="trivia-description">How old is the oldest surviving piece of garbage out there?</p>
+                        <ul class="trivia-board" >
+                            <li>    <!--Pregunta 3º-->
+                                <img src="img/Vanguard_1.jpg" alt="" width="60%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question3">1958 — A piece of the American rocket Vanguard 1
+                            </li>
+                            <li>
+                                <img src="img/AS201.jpg" alt="" width="60%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question3">1966 — America’s “AS 201” mission
+                            </li>
+                            <li>
+                                <img src="img/Vostok .jpeg" alt="" width="60%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question3">1961 — Yuri Gagarin’s “Vostok 1”
+                            </li>
+                            <li>
+                                <img src="img/Sputnik.jpeg" alt="" width="60%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question3">1957 - A pice of USSR's "Sputnik" 1
+                            </li>
+                        </ul>
+                    <br>
+                    <p  class="trivia-description">When was the year in which mankind entered the space race?</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 6º-->
+                                <img src="img/Space_Race.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question6">2009
+                            </li>
+                                <li>
+                                <img src="img/Space_Race.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question6">1957
+                            </li>
+                            <li>
+                                <img src="img/Space_Race.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question6">1983
+                            </li>
+                            <li>
+                                <img src="img/Space_Race.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question6">1950
+                            </li>
+                        </ul>
+                    <br>
+                    <p  class="trivia-description"> Which country is the largest contributor of space waste in the world?</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 4º-->
+                                <img src="img/USA.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question4">USA
+                            </li>
+                                <li>
+                                <img src="img/China.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question4">China
+                            </li>
+                            <li>
+                                <img src="img/Rusia.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question4">Rusia
+                            </li>
+                            <li>
+                                <img src="img/India.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question4">India
+                            </li>
+                        </ul>
+                    <br>
+                    <p  class="trivia-description">How many satellites has Mexico launched in space over the course of time?</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 7º-->
+                                <img src="img/mexican_satelite.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question7">24
+                            </li>
+                                <li>
+                                <img src="img/mexican_satelite.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question7">8
+                            </li>
+                            <li>
+                                <img src="img/mexican_satelite.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question7">13
+                            </li>
+                            <li>
+                                <img src="img/mexican_satelite.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question7">2
+                            </li>
+                        </ul>
+                    <br>
+                    <p  class="trivia-description">What is the so-called “Kessler Syndrome”</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 5º-->
+                                <img src="img/astronaut.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question5">When an astronaut gets hits by a piece of orbiting debris.
+                            </li>
+                                <li>
+                                <img src="img/speding.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question5">The acceleration of space debris, up to 7 times that of a bullet.
+                            </li>
+                            <li>
+                                <img src="img/space_junk.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question5">Theory that Man-made garbage in space will affect all communications systems.
+                            </li>
+                            <li>
+                                <img src="img/bigbangtheory.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question5">A made up theory made by the "Big Bang Theory" show.
+                            </li>
+                        </ul>
+                    <br>
+                    <p  class="trivia-description">Elon musk’s Space X launched a Tesla Roadster electric car to space in 2018. The driver has the songs “________” in continuous play in his helmet.</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 8º-->
+                                <img src="img/davis_Bowie.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question8">David Bowie’s “Space Oddity”
+                            </li>
+                                <li>
+                                <img src="img/Elton_John.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question8">Elton John’s “Rocket Man”
+                            </li>
+                            <li>
+                                <img src="img/David_Mars.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question8">David Bowie’s “Life on Mars”
+                            </li>
+                            <li>
+                                <img src="img/Alan_P.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question8">The Alan Parson’s Project “Eye in the Sky”
+                            </li>
+                        </ul>
+                    <br>
+                    <p  class="trivia-description"> The U.S. Air Force has a program called “_______________” to track the current amount of debris in orbit.</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 9º-->
+                                <img src="img/us_airforce.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question9">Lightyear Garbage
+                            </li>
+                                <li>
+                                <img src="img/us_airforce.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question9">Secret NASA or "SNASA"
+                            </li>
+                            <li>
+                                <img src="img/us_airforce.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question9">Space Fence
+                            </li>
+                            <li>
+                                <img src="img/us_airforce.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question9">Space Vantage
+                            </li>
+                        </ul>
+                    <br>
+                    <p  class="trivia-description">What’s our best option to get rid of space garbage so far?</p>
+                        <ul class="trivia-board">
+                            <li>        <!--Pregunta 10º-->
+                                <img src="img/Space_net.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="one" name="question10">A space Net to pull garbage back to the atmosphere
+                            </li>
+                                <li>
+                                <img src="img/thanos.jpg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="two" name="question10">Thanos Snap
+                            </li>
+                            <li>
+                                <img src="img/Space_claw.jpeg" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="three" name="question10">A space Claw to collect big items
+                            </li>
+                            <li>
+                                <img src="img/Space_laser.png" alt="" width="100%;" height="200px;">
+                                <br>
+                                <input type="radio" value="four" name="question10">High-power lasers
+                            </li>
+                        </ul>
+                    <br>
+                    <button class="btn btn-info btn-lg btn-block" type="button" id="submit" onclick="check()">All Done</button>
+                    <br>
+                </form>
+                <div id="after_submit">
+                        <br>
+                        <strong><p id="message"></p></strong>
+                        <strong><p id="number_correct"></p></strong>
+                        <img id="gifs">
+                </div>
+                <br>
+            </div>
+        </section>
+
+    </main>
+
+
+</body>
+
+<script type="text/javascript">
+
+/*document.getElementById("submit").onclick = check();*/
+
+function check(){
+
+    var question1 = document.quiz.question1.value;
+    var question2 = document.quiz.question2.value;
+    var question3 = document.quiz.question3.value;
+    var question4 = document.quiz.question4.value;
+    var question5 = document.quiz.question5.value;
+    var question6 = document.quiz.question6.value;
+    var question7 = document.quiz.question7.value;
+    var question8 = document.quiz.question8.value;
+    var question9 = document.quiz.question9.value;
+    var question10 = document.quiz.question10.value;
+    var correct = 0;
+
+    if(question1 == "one"){
+        correct++;
+        console.log("question1 correcta");
+    }
+    if(question2 == "two"){
+        correct++
+        console.log("question2 correcta");
+    }
+    if(question3 == "three"){
+        correct++
+        console.log("question3 correcta");
+    }
+    if(question4 == "one"){
+        correct++;
+        console.log("question4 correcta");
+    }
+    if(question5 == "two"){
+        correct++
+        console.log("question5 correcta");
+    }
+    if(question6 == "three"){
+        correct++
+        console.log("question6 correcta");
+    }
+    if(question7 == "three"){
+        correct++;
+        console.log("question7 correcta");
+    }
+    if(question8 == "one"){
+        correct++
+        console.log("question8 correcta");
+    }
+    if(question9 == "three"){
+        correct++
+        console.log("question9 correcta");
+    }
+    if(question10 == "four"){
+        correct++
+        console.log("question10 correcta");
+    }
+
+    /*if(correct = 10){
+        var ganador = prompt("Ingres tu mail y descubre tu premio!!");
+    }*/
+
+var message = ['Nice Going Amigo!!','You Almost Got Them All','So So... Kee Trying','Dame! What Happened?'];
+var gifs = ['img/chava-iglesias.gif','img/diego_luna.gif','img/derbez.gif','img/quico_llora.gif'];
+
+var range;
+
+    if(correct <= 2){
+        range = 3;
+    }
+    if(correct > 2 && correct < 7){
+        range = 2;
+    }
+    if(correct > 7 && correct < 10){
+        range = 1;
+    }
+    if(correct > 9) {
+        range = 0;
+    }
+
+    document.getElementById("after_submit").style.display = "block";
+
+    document.getElementById("message").innerHTML = message[range];
+    console.log(message[range])
+    document.getElementById("number_correct").innerHTML = "You got " + correct + " answers correct!";
+    console.log("You got" + correct + "answers correct!")
+    document.getElementById("gifs").src = gifs[range];
+}
+
+</script>
+
+</html>

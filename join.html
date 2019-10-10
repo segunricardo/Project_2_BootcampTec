@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dude Where Is My Space Junk</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <style>
+        body {
+            background-image: url("img/space.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+    }
+
+        main {
+             background-color: rgb(236, 235, 242, 50%);
+             height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!--Nav Bar Start-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><img src="" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">Home</a>
+            <a class="nav-item nav-link active" href="map.html">Map <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="instructions.html">Game</a>
+            <a class="nav-item nav-link active"  href="join.html">Join</a>
+          </div>
+        </div>
+      </nav>
+      <!--Nav Bar Ends-->
+
+       <h3 class="h1">Lets Keep In Touch</h3>
+    </br>
+    </br>
+    <main>
+        <form class="container">
+        <div class="form-row">
+            </br>
+            <div class="form-group col-md-6">
+            <label for="inputEmail4">Firstname</label>
+            <input type="text" id="firstname" class="form-control" id="inputEmail4" placeholder="Firstname...">
+            </div>
+            <div class="form-group col-md-6">
+            <label for="inputPassword4">Lastname</label>
+            <input type="text" id="lastname" class="form-control" id="inputPassword4" placeholder="Lastname...">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Email</label>
+            <input type="email" id="email" class="form-control" id="inputAddress" placeholder="example@mail.com">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="inputCity">Country</label>
+            <select id="country" class="form-control" id="exampleFormControlSelect1">
+                <option value="default">select</option>
+                <option value="mx">Mexico</option>
+                <option value="us">USA</option>
+                <option value="ca">Canada</option>
+                <option value="br">Brasil</option>
+            </select>
+            </div>
+            <div class="form-group col-md-6">
+            <label for="inputState">Gender</label>
+            <select id="gender" id="inputState" class="form-control">
+                <option selected>select</option>
+                <option>Male</option>
+                <option>Woman</option>
+                <option>I prefer not to say</option>
+            </select>
+            </div>
+             <div class="form-group col-md-12">
+                <label for="formControlRange">Space Related Interest</label>
+                <input type="range" class="form-control-range" id="formControlRange">
+            </div>
+        </div>
+        </br>
+        <button type="submit" onclick="Submit()" class="btn btn-primary">Sign in</button>
+        </form>
+    </main>
+</body>
+    
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC2-pQs3mGSlz_zHE7BkTmOWo5oqO4MMgc",
+    authDomain: "spacepoject.firebaseapp.com",
+    databaseURL: "https://spacepoject.firebaseio.com",
+    projectId: "spacepoject",
+    storageBucket: "",
+    messagingSenderId: "116341448923",
+    appId: "1:116341448923:web:249b7b095465de22862cfe",
+    measurementId: "G-V42LCQL1XE"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  function Submit(){
+      firebase.database().ref("User").set({
+          firstname: document.getElementById('firstname').value,
+          lastname: document.getElementById('lastname').value,
+          email: document.getElementById('email').value,
+          country: document.getElementById('county').value,
+          gender: document.getElementById('gender').value,
+          data: {
+              type:Date,
+              default:Date.now
+          }
+
+      })
+  }
+</script>
+    
+
+</html>
